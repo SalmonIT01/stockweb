@@ -9,6 +9,10 @@ def index(request):
     if request.method == 'POST':
         product_id = request.POST['product_id']
         product_name = request.POST['product_name']
+        unit_id = request.POST['unit_id']
+        amount = request.POST['amount']
+        status_id = request.POST['status_id']
+
         #Creating the Object of record every time user click on 'Add Deta'
         obj = Details()
         obj.product_id = product_id
