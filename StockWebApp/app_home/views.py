@@ -15,4 +15,5 @@ def home(request):
 #     product_table = cursur.fetchall()
 #     print(product_table)
 
-
+#kbjb,m,m,jh
+#,kvc]h;
