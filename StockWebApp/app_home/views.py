@@ -1,16 +1,31 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from .models import Details
 # from function import*
-
-
-
 # Create your views here.
-def index(request):
-    # Your view logic here
-    return render(request, 'app_home/index.html')
-
 def home(request):
     return render(request,'app_home/home.html')
+def index(request):
+    # if request.method == 'POST':
+    #     product_id = request.POST['product_id']
+    #     product_name = request.POST['product_name']
+    #     #Creating the Object of record every time user click on 'Add Deta'
+    #     obj = Details()
+    #     obj.product_id = product_id
+    #     obj.product_name = product_name
+    #     obj.save()
+
+    from django.core import serializers
+    data = serializers.serialize("python",Details.objects.all())
+
+    context = {
+        'data': data,
+
+    }
+
+    return render(request, 'app_home/index.html', context)
+
+
 
 # def showdb():
 #     db = '''SELECT * 
@@ -19,4 +34,4 @@ def home(request):
 #     product_table = cursur.fetchall()
 #     print(product_table)
 
-#เปลี่ยนใหม่กว่าเดิม
+
