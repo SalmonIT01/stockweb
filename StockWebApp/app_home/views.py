@@ -1,6 +1,6 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from .models import Details
+from .models import Details,Unit
 # from function import*
 # Create your views here.
 def home(request):
