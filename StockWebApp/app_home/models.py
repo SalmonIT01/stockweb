@@ -7,7 +7,7 @@ class Details(models.Model):
     product_name = models.CharField(max_length = 20, default = '', null = False)
     unit_id = models.IntegerField(max_length = 20, default = '', null = False)
     amount = models.FloatField(max_length = 20, default = '', null = False)
-    status_id = models.IntegerField(max_length = 20, default = '', null = True)
+    status_id = models.IntegerField(max_length = 20, default = '0', null = False)
 
 class Unit(models.Model):
     unit_id = models.IntegerField(max_length = 20, default = '', null = False)
