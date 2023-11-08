@@ -14,9 +14,10 @@ def home(request):
 #     cursur.execute(db)
 #     product_table = cursur.fetchall()
 #     print(product_table)
-def showdb(request):
-    return HttpResponse('ggez')
+
 
 #kbjb,m,m,jh
 #,kvc]h;
+
+#นนท์เทส
 
