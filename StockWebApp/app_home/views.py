@@ -16,5 +16,6 @@ def home(request):
 #     print(product_table)
 
 
-#Fjkblnlufk
-#hjkuhihogdtgljnuilbkujh
+#kbjb,m,m,jh
+#,kvc]h;
+
