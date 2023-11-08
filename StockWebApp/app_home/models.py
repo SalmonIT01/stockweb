@@ -8,3 +8,4 @@ class Details(models.Model):
     unit_id = models.CharField(max_length = 20, default = '', null = False)
     amount = models.CharField(max_length = 20, default = '', null = False)
     status_id = models.CharField(max_length = 20, default = '', null = False)
+
