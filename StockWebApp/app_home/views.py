@@ -15,7 +15,11 @@ def home(request):
 #     product_table = cursur.fetchall()
 #     print(product_table)
 
+<<<<<<< Updated upstream
 
 #kbjb,m,m,jh
 #,kvc]h;
 
+=======
+#เปลี่ยนใหม่กว่าเดิม
+>>>>>>> Stashed changes
