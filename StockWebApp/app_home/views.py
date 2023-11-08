@@ -5,6 +5,10 @@ from django.shortcuts import render
 
 
 # Create your views here.
+def index(request):
+    # Your view logic here
+    return render(request, 'app_home/index.html')
+
 def home(request):
     return render(request,'app_home/home.html')
 
