@@ -4,10 +4,10 @@ from django.db import models
 
 class Details(models.Model):
     product_id = models.CharField(max_length = 20, default = '', null = False)
-    product_name = models.CharField(max_length = 20, default = '', null = False)
+    product_name = models.CharField(max_length = 225, default = '', null = False)
     unit_id = models.IntegerField(max_length = 20, default = '', null = False)
     amount = models.FloatField(max_length = 20, default = '', null = False)
-    status_id = models.IntegerField(max_length = 20, default = '0', null = False)
+    status_id = models.IntegerField(max_length = 20, default = '0', null = True)
 
 class Unit(models.Model):
     unit_id = models.IntegerField(max_length = 20, default = '', null = False)
