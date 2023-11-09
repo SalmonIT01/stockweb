@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 
 <html>
     <head>
@@ -55,4 +56,20 @@
         </table>
 
     </body>
+=======
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Items</title>
+</head>
+<body>
+    <h1>Stock Items</h1>
+    <ul>
+        {% for item in stock_items %}
+            <li>{{ item.name }} - {{ item.price }}</li>
+        {% endfor %}
+    </ul>
+</body>
+>>>>>>> Stashed changes
 </html>

@@ -1,8 +1,21 @@
 from django.http.response import HttpResponse
+<<<<<<< Updated upstream
 from django.shortcuts import render
 from .models import Details,Unit
 # from function import*
 # Create your views here.
+=======
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.template import loader
+from .models import *
+
+# Create your views here.
+def index(request):
+    stock_items = StockItem.objects.all()
+    return render(request, 'app_home/index.html', {'stock_items': stock_items})
+
+>>>>>>> Stashed changes
 def home(request):
     return render(request,'app_home/home.html')
 def index(request):
@@ -31,6 +44,7 @@ def index(request):
 
 
 
+<<<<<<< Updated upstream
 # def showdb():
 #     db = '''SELECT * 
 #             FROM products2; '''
@@ -39,3 +53,6 @@ def index(request):
 #     print(product_table)
 
 
+=======
+ 
+>>>>>>> Stashed changes

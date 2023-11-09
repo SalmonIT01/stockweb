@@ -57,7 +57,7 @@ def showdb():
             FROM products2; '''
     cursur.execute(db)
     product_table = cursur.fetchall()
-    print(product_table)
+    return product_table
     
 def updatedb():
     search()
@@ -256,13 +256,7 @@ def main():
         print("Invalid choice")
         main()
 
-main()  
-# search()  
-# showdb()  
-# insert()  
-# updatedb()
-# status_update()
-# delete()
-# showStatus()
-# borrow()
+# main()
+
+
 
