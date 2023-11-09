@@ -1,4 +1,3 @@
-
 <html>
     <head>
         <style>
@@ -9,7 +8,39 @@
         </style>
     </head>
     <body>
+        
         <h1>Table of stock</h1>
+        <form action="#" method="post">{% csrf_token %}
+            <div class="form-group first">
+            
+                <input type="text" placeholder="Enter product id:"
+                    name="product_id">
+            </div>
+            <div class="form-group 2">
+                
+                <input type="text" placeholder="Enter product name:"
+                    name="product_name">
+            </div>
+            <div class="form-group 3">
+                
+                <input type="number" placeholder="Enter unit id:"
+                    name="unit_id">
+            </div>
+
+            <div class="form-group 4">
+                
+                <input type="number" placeholder="Enter amount:"
+                    name="amount">
+            </div>
+
+            <div class="form-group 5">
+            
+                <input type="number" placeholder="Enter status id:"
+                    name="status_id">
+            </div>
+
+            <input type="submit" value="submit">
+        </form>
         <table>
             <thead>
                 <tr>
