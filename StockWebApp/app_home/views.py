@@ -36,12 +36,21 @@ def index(request):
 
 def search(request):
     if "search" in request.POST:
-        product_id_search =  request.POST.copy().get('product_id_search')
-        data = serializers.serialize("python",Details.objects.filter(product_id__contains = product_id_search))
-        context = {
-            'data': data,
-        }
-        return render(request, 'app_home/search.html',context)
+        try:
+            product_id_search =  int(request.POST.copy().get('product_id_search'))
+            data = serializers.serialize("python",Details.objects.filter(product_id__contains = product_id_search))
+            context = {
+                'data': data,
+            }
+            return render(request, 'app_home/search.html',context)
+        except :
+            product_id_search =  request.POST.copy().get('product_id_search')
+            data = serializers.serialize("python",Details.objects.filter(product_name__contains = product_id_search))
+            context = {
+                'data': data,
+            }
+            return render(request, 'app_home/search.html',context)
+
     if "insert" in request.POST:
         return redirect("index")
     return render(request, 'app_home/search.html')
