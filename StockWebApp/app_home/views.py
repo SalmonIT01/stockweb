@@ -29,7 +29,7 @@ def index(request):
     
     data = Details.objects.all().select_related('unit')
     context = {
-            'data': data,
+            'Newdata': data,
         }
     if "search" in request.POST:
         return redirect('search')
@@ -61,3 +61,17 @@ def unit_convert (unit_name_user):
     unit_con = Unit.objects.get(unit_name = unit_name_user)
     unit_num = unit_con.unit_id
     return unit_num
+    
+
+    
+
+
+
+# def showdb():
+#     db = '''SELECT * 
+#             FROM products2; '''
+#     cursur.execute(db)
+#     product_table = cursur.fetchall()
+#     print(product_table)
+
+
