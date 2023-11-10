@@ -6,14 +6,12 @@ from .models import Details,Unit
 
 def index(request):
     from django.core import serializers
-    data = serializers.serialize("python",Details.objects.all())
-    unit_data = Details.objects.select_related('unit')
-    # unit_data = Details.objects.select_related('unit').values('product_id', 'product_name', 'unit__unit_name', 'amount', 'status_id')
+    data = serializers.serialize("python",Details.objects.all().select_related('unit'))
     
+    unit_data = Details.objects.all().select_related('unit')
+
     context = {
-        'data': data,
-        
-    }
+        'data': unit_data, }
 
     return render(request, 'app_home/index.html', context)
 
