@@ -2,6 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render,redirect
 from .models import Details,Unit
 from django.core import serializers
+from django.shortcuts import get_object_or_404
 
 # from function import*
 # Create your views here.
@@ -54,6 +55,11 @@ def search(request):
     if "insert" in request.POST:
         return redirect("index")
     return render(request, 'app_home/search.html')
+
+def delete (request,product_id):
+    dele  = Details.objects.get(product_id=product_id)
+    dele.delete()
+    return redirect("index")
     
 
     
