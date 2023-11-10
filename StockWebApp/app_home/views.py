@@ -61,27 +61,7 @@ def unit_convert (unit_name_user):
     unit_num = unit_con.unit_id
     return unit_num
     
-def update(request):
-    if "update" in request.POST:
-        product_id = request.POST.copy().get('product_id')
-        product_name = request.POST.copy().get('product_name')
-        unit_name = request.POST.copy().get('unit_name')
-        unit_id = unit_convert (unit_name)
-        amount = request.POST.copy().get('amount')
-        obj = Details()
-        obj.product_id = product_id
-        obj.product_name = product_name
-        obj.unit_id = unit_id
-        obj.amount = amount
-        obj.save()
-    
-    data = Details.objects.all().select_related('unit')
-    context = {
-            'data': data,
-        }
-    if "update" in request.POST:
-        return redirect('update')
-    return render(request, 'app_home/index.html', context)
+
     
 
     
