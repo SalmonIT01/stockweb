@@ -3,19 +3,28 @@ from django.shortcuts import render
 from .models import Details,Unit
 # from function import*
 # Create your views here.
-def home(request):
-    return render(request,'app_home/home.html')
+
 def index(request):
     from django.core import serializers
     data = serializers.serialize("python",Details.objects.all())
-
+    unit_data = Details.objects.select_related('unit')
+    # unit_data = Details.objects.select_related('unit').values('product_id', 'product_name', 'unit__unit_name', 'amount', 'status_id')
+    
     context = {
         'data': data,
-
+        
     }
 
     return render(request, 'app_home/index.html', context)
 
+def home(request):
+    from django.core import serializers
+    
+    unit_data = Details.objects.select_related('unit').values('product_id', 'product_name', 'unit__unit_name', 'amount', 'status_id')
+    
+    context = {'dataUnit':unit_data,}
+
+    return render(request, 'app_home/home.html', context)
 
 
 # def showdb():

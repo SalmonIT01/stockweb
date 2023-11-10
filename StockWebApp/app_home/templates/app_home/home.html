@@ -1,0 +1,50 @@
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+<title>Title of the document</title>
+</head>
+
+<body>
+    อะไรเนี่ย
+    {% for instance in dataUnit %}
+     {{ instance.unit.unit_name}}
+    {%endfor%}
+</body>
+
+</html> {% endcomment %}
+<html>
+    <head>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                }
+        </style>
+    </head>
+    <body>
+        <h1>Table of stock</h1>
+        <table>
+            <thead>
+                <tr>
+ 
+                    <th>
+                        unit_id
+                    </th>
+
+
+                </tr>
+            </thead>
+
+            {% for instance in dataUnit %}
+                <tr>
+                    <td>
+                        {{ instance.unit.unit_name}}
+                    </td>
+
+                </tr>
+            {% endfor %}
+
+        </table>
+
+    </body>
+</html>
