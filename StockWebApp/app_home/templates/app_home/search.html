@@ -1,3 +1,4 @@
+{% load static %}
 <html>
     <head>
         <style>
@@ -8,8 +9,9 @@
         </style>
     </head>
     <body>
-        
-        <h1>Table of stock</h1>
+        <center>
+        <img src="{% static 'nulogo.png' %}" width="150" height="150">
+        <h1>Search Stock</h1>
         <form action="#" method="post">{% csrf_token %}
             
             <input type="submit" name="insert" value="Back to Insert">
@@ -63,6 +65,6 @@
             {% endfor %}
 
         </table>
-
+    </center>
     </body>
 </html>
