@@ -44,20 +44,20 @@
             {% for instance in data %}
                 <tr>
                     <td>
-                        {{ instance.fields.product_id}}
+                        {{ instance.product_id}}
                     </td>
 
                     <td>
-                        {{ instance.fields.product_name}}
+                        {{ instance.product_name}}
                     </td>
                     <td>
-                        {{ instance.fields.unit_id}}
+                        {{ instance.unit.unit_name}}
                     </td>
                     <td>
-                        {{ instance.fields.amount}}
+                        {{ instance.amount}}
                     </td>
                     <td>
-                        {{ instance.fields.status_id}}
+                        {{ instance.status_id}}
                     </td>
                 </tr>
             {% endfor %}
