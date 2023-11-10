@@ -29,7 +29,7 @@ def index(request):
     
     data = Details.objects.all().select_related('unit')
     context = {
-            'Newdata': data,
+            'data': data,
         }
     if "search" in request.POST:
         return redirect('search')
