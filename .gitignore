@@ -1,4 +1,3 @@
-
-*.pyc
+StockWebApp/stockdb.db
 *.pyc
 *.pyc
