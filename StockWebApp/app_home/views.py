@@ -25,7 +25,7 @@ def index(request):
         obj.status_id = status_id
         obj.save()
     
-    data = serializers.serialize("python",Details.objects.all())
+    data = Details.objects.all().select_related('unit')
     context = {
             'data': data,
         }
