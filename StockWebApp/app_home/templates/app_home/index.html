@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <style>
@@ -41,20 +42,13 @@
         <table>
             <thead>
                 <tr>
-                    <th>
-                        product_id
-                    </th>
-                    <th>
-                        product_name
-                    </th>
-                    <th>
-                        unit_id
-                    </th>
-                    <th>
-                        amount
-                    </th>
-                    <th>
-                        status_id
+                    <th>product id</th>
+                    <th>product name</th>
+                    <th>unit name</th>
+                    <th>amount</th>
+                    <th>status id</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
 
                 </tr>
             </thead>
@@ -77,7 +71,18 @@
                     <td>
                         {{ instance.status_id}}
                     </td>
+                    <td class = "text_center">
+                        <div class = "btn_group">
+                            <a href = "" > Edit </a>
+                        </div>
+                    </td>
+                    <td class = "text_center">
+                        <div class = "btn_group">
+                            <a href="/delete/{{instance.fields.product_id}}">Delete</a>
+                        </div>
+                    </td>
                 </tr>
+        
             {% endfor %}
 
         </table>

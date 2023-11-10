@@ -2,6 +2,7 @@ from django.http.response import HttpResponse
 from django.shortcuts import render,redirect
 from .models import Details,Unit
 from django.core import serializers
+from django.shortcuts import get_object_or_404
 
 # from function import*
 # Create your views here.
@@ -57,10 +58,17 @@ def search(request):
         return redirect("index")
     return render(request, 'app_home/search.html')
 
+
+def delete (request,product_id):
+    dele  = Details.objects.get(product_id=product_id)
+    dele.delete()
+    return redirect("index")
+
 def unit_convert (unit_name_user):
     unit_con = Unit.objects.get(unit_name = unit_name_user)
     unit_num = unit_con.unit_id
     return unit_num
+
     
 
     
