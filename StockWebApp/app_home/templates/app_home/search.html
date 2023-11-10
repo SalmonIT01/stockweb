@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <style>
@@ -25,7 +26,7 @@
                 <tr>
                     <th>product_id</th>
                     <th>product_name</th>
-                    <th>unit_id</th>
+                    <th>unit_name</th>
                     <th>amount</th>
                     <th>status_id</th>
                     <th>Delete</th>
@@ -35,20 +36,20 @@
             {% for instance in data %}
                 <tr>
                     <td>
-                        {{ instance.fields.product_id}}
+                        {{ instance.product_id}}
                     </td>
 
                     <td>
-                        {{ instance.fields.product_name}}
+                        {{ instance.product_name}}
                     </td>
                     <td>
-                        {{ instance.fields.unit_id}}
+                        {{ instance.unit.unit_name}}
                     </td>
                     <td>
-                        {{ instance.fields.amount}}
+                        {{ instance.amount}}
                     </td>
                     <td>
-                        {{ instance.fields.status_id}}
+                        {{ instance.status_id}}
                     </td>
                     <td class = "text_center">
                         <div class = "btn_group">
@@ -62,3 +63,4 @@
 
     </body>
 </html>
+
