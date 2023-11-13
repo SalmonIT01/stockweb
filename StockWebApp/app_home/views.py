@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from .models import Details,Unit
 from django.core import serializers
 from django.shortcuts import get_object_or_404
+from .froms import VenueFrom
 
 # from function import*
 # Create your views here.
@@ -68,6 +69,41 @@ def unit_convert (unit_name_user):
     unit_con = Unit.objects.get(unit_name = unit_name_user)
     unit_num = unit_con.unit_id
     return unit_num
+
+def unit_convert_num (unit_num):
+    unit_con = Unit.objects.get(unit_id = unit_num)
+    unit_str = unit_con.unit_name
+    return unit_str
+
+def update (request,product_id):
+    
+    venue  = Details.objects.get(product_id=product_id)
+    unit_title = unit_convert_num(venue.unit_id)  
+    
+    if "update" in request.POST:
+        p  = Details.objects.get(product_id=product_id)
+        p.product_id= request.POST.copy().get('product_id')
+        p.product_name= request.POST.copy().get('product_name')
+        unit_name = request.POST.copy().get('unit_name')
+        p.unit_id = unit_convert (unit_name)
+        p.amount= request.POST.copy().get('amount')
+        p.status_id= request.POST.copy().get('status_id')
+        p.save()
+        return redirect("index")
+    # form = VenueFrom(request.POST or None , instance=venue)
+    # if form.is_valid():
+    #     form.save()
+    #     return redirect("index")
+    # s = Details.objects.all()
+    # venue.save()
+    # venue.save()
+    # print(venue.product_name)
+    context = {
+        'venue' : venue,
+        'unit_title':unit_title
+        # 'form' : form
+     }
+    return render(request, 'app_home/update.html',context)
 
     
 

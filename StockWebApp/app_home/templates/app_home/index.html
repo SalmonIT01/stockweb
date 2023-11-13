@@ -38,6 +38,7 @@
                     name="status_id">
             </div>
             <input type="submit" name="insert" value="submit">
+
             <input type="submit" name="search" value="go to search">
         </form>
         <table>
@@ -74,12 +75,12 @@
                     </td>
                     <td class = "text_center">
                         <div class = "btn_group">
-                            <a href = "" > Edit </a>
+                            <a href = "{% url 'update' instance.product_id%}" > Edit </a>
                         </div>
                     </td>
                     <td class = "text_center">
                         <div class = "btn_group">
-                            <a href="/delete/{{instance.product_id}}">Delete</a>
+                            <a href="{% url 'delete' instance.product_id%}">Delete</a>
                         </div>
                     </td>
                 </tr>
