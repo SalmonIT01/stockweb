@@ -32,8 +32,6 @@ def index(request):
     context = {
             'data': data,
         }
-    if "search" in request.POST:
-        return redirect('search')
     return render(request, 'app_home/index.html', context)
     
 
@@ -60,6 +58,7 @@ def search(request):
 
 
 def delete (request,product_id):
+    
     dele  = Details.objects.get(product_id=product_id)
     dele.delete()
     return redirect("index")
