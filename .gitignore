@@ -3,3 +3,5 @@ StockWebApp/stockdb.db
 *.pyc
 *.pyc
 StockWebApp/stockdb.db
+*.pyc
+*.db
