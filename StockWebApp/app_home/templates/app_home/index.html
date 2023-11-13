@@ -28,43 +28,42 @@
         <h1>Table of stock</h1>
         <form action="#" method="post">{% csrf_token %}
             <div class="form-group first">
-                <input autocomplete="off" type="text" placeholder="Enter product id" name="product_id">
+                <input autocomplete="off" type="text" placeholder="Enter product id" name="product_id" required>
             </div>
 
             <div class="form-group 2">
-                <input autocomplete="off" type="text" placeholder="Enter product name" name="product_name">
+                <input autocomplete="off" type="text" placeholder="Enter product name" name="product_name" required>
             </div>
 
             <div class="form-group 3">
-                <input autocomplete="off" type="text" placeholder="Enter unit name" name="unit_name">
+                <input autocomplete="off" type="text" placeholder="Enter unit name" name="unit_name" required>
             </div>
 
             <div class="form-group 4">
-                <input autocomplete="off" type="number" placeholder="Enter amount" name="amount">
+                <input autocomplete="off" type="number" placeholder="Enter amount" name="amount" required>
             </div>
 
             <div class="form-group 5">
-                <input autocomplete="off" type="number" placeholder="Enter status id" name="status_id">
+                <input autocomplete="off" type="number" placeholder="Enter status id" name="status_id" required>
             </div>
-            <input type="submit" name="insert" value="submit">
 
-            <div class="form-group 6">
-                <input type="text" placeholder="Enter products id (search):"
-                    name="product_id_search" id="liveSearch" onkeyup="searchFunction()">
-            </div>
-            <!-- <input type="submit" name="search" value="Search"> -->
-            <!-- <button type="button">
-                <a href="{% url 'search'%}">Go to search </a>
-            </button> -->
+            <input type="submit" name="insert" value="เพิ่มข้อมูล">
+            <button>
+                <a href="{% url 'search'%}">ไปหน้าค้นหา</a>
+            </button>
+            <button>
+                <a href="{% url 'borrow'%}">ไปหน้ายืมสินค้า</a>
+            </button>
+            <!-- <input type="submit" name="search" value="go to search"> -->
         </form>
-        <table id="myTable">
+        <table>
             <thead>
                 <tr>
-                    <th>product id</th>
-                    <th>product name</th>
-                    <th>unit name</th>
-                    <th>amount</th>
-                    <th>status id</th>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Unit</th>
+                    <th>Amount</th>
+                    <th>Status</th>
                     <th>Edit</th>
                     <th>Delete</th>
 
@@ -81,14 +80,14 @@
                     {{ instance.product_name}}
                 </td>
                 <td>
-                    {{ instance.unit.unit_name}}
-                </td>
-                <td>
                     {{ instance.amount}}
                 </td>
                 <td>
+                    {{ instance.unit.unit_name}}
+                </td>
+                <td>
                     {% if instance.status_id == 1 %}
-                        พร้อมใช้งาน
+                        <font color="green">พร้อมใช้งาน</font>
                     {% else %}
                         <font color="red">ไม่พร้อมใช้งาน</font>
                     {% endif %}
@@ -108,37 +107,7 @@
             {% endfor %}
 
         </table>
-        <p id="msg"></p>
     </center>
-    <script>
-        function searchFunction(){
-            let input , filter , table , td , tr , j;
-            input = document.getElementById("liveSearch");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("myTable");
-            tr = table.getElementsByTagName("tr");
-            console.log(filter);
-            for(j=0 ; j < tr.length ; j++){
-                td = tr[j].getElementsByTagName("td");
-
-                if (td.length > 0){
-                    if (td[0].innerHTML.toLocaleUpperCase().indexOf(filter) > -1 || 
-                        td[1].innerHTML.toLocaleUpperCase().indexOf(filter) > -1 
-                    ){
-                        tr[j].style.display = ""
-                    }
-                    else {
-                        tr[j].style.display = "none"
-                    }
-                }
-                if (td.length == 0){
-                    msg.innerHTML = "not found";
-                }
-            }
-        }
-    </script>
-        
-
 </body>
 
 </html>
