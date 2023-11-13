@@ -8,7 +8,7 @@
                 }
                 th,
         td {
-            text-align: left;
+            text-align: center;
             padding: 8px;
         }
 
@@ -20,11 +20,13 @@
     <body style="background-color:silver;">
         <center>
         <img src="{% static 'nulogo.png' %}" width="150" height="150">
-        <h1>Table of stock</h1>
+        <h1>Search Table of stock</h1>
         <form action="#" method="post">{% csrf_token %}
             
-            <input autocomplete="off" type="submit" name="insert" value="Back to Insert">
-
+            <!-- <input autocomplete="off" type="submit" name="insert" value="Back to Insert"> -->
+            <button>
+                <a href="{% url 'index'%}">Back to Home</a>
+            </button>
             <div class="form-group 6">
                 <input type="text" placeholder="Enter products id (search):"
                     name="product_id_search">
@@ -34,11 +36,11 @@
         <table>
             <thead>
                 <tr>
-                    <th>product_id</th>
-                    <th>product_name</th>
-                    <th>unit_name</th>
-                    <th>amount</th>
-                    <th>status_id</th>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Unit</th>
+                    <th>Amount</th>
+                    <th>Status</th>
                     <th>Delete</th>
                 </tr>
             </thead>
