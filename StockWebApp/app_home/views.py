@@ -1,8 +1,10 @@
+import datetime
 from django.http.response import HttpResponse
 from django.shortcuts import render,redirect
-from .models import Details,Unit
+from .models import borrow_products,Unit,Details
 from django.core import serializers
 from django.shortcuts import get_object_or_404
+from django.contrib  import messages
 
 # from function import*
 # Create your views here.
@@ -67,6 +69,37 @@ def unit_convert (unit_name_user):
     unit_con = Unit.objects.get(unit_name = unit_name_user)
     unit_num = unit_con.unit_id
     return unit_num
+
+def borrow(request):
+    now_time = datetime.datetime.now()
+    if "borrow" in request.POST:
+        product_id = request.POST.get('product_id')
+        bproduct = id_convert (product_id)
+        amount = request.POST.get('B_amount')
+        now_time = datetime.datetime.now()
+        
+        obj = borrow_products()
+        obj.bproduct_id = bproduct
+        obj.borrow_date = now_time
+        obj.b_amount = amount
+        
+        obj.save()
+        
+        context2 = {
+        'b_productID' : Details.objects.filter(product_id=product_id),
+        'b_amount'   : borrow_products.objects.filter(b_amount=amount),
+        'nowtime2': now_time}
+        data = borrow_products.objects.all().select_related('details')
+    context = {
+            'data': data,
+        }
+    return render(request, 'app_home/index.html', context)
+
+def id_convert (bproduct_id):
+    id_product = Details.objects.get(product_id = bproduct_id )
+    id_con = id_product.id
+    return id_con
+
 
     
 
