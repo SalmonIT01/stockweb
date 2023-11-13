@@ -10,7 +10,6 @@ def home(request):
     return render(request,'app_home/home.html')
 
 def index(request):
-    
     if "insert" in request.POST:
         product_id = request.POST.copy().get('product_id')
         product_name = request.POST.copy().get('product_name')
@@ -37,15 +36,14 @@ def index(request):
 
 def search(request):
     if "search" in request.POST:
-        try:
-            product_id_search =  int(request.POST.copy().get('product_id_search'))
+        product_id_search =  request.POST.copy().get('product_id_search')
+        if product_id_search.isnumeric():
             data = Details.objects.filter(product_id__contains = product_id_search)
             context = {
                 'data': data,
             }
             return render(request, 'app_home/search.html',context)
-        except :
-            product_id_search =  request.POST.copy().get('product_id_search')
+        else :
             data = Details.objects.filter(product_name__contains = product_id_search)
             context = {
                 'data': data,
@@ -58,7 +56,6 @@ def search(request):
 
 
 def delete (request,product_id):
-    
     dele  = Details.objects.get(product_id=product_id)
     dele.delete()
     return redirect("index")
@@ -68,17 +65,6 @@ def unit_convert (unit_name_user):
     unit_num = unit_con.unit_id
     return unit_num
 
-    
 
     
-
-
-
-# def showdb():
-#     db = '''SELECT * 
-#             FROM products2; '''
-#     cursur.execute(db)
-#     product_table = cursur.fetchall()
-#     print(product_table)
-
 
