@@ -47,12 +47,17 @@
                 <input autocomplete="off" type="number" placeholder="Enter status id" name="status_id">
             </div>
             <input type="submit" name="insert" value="submit">
-            <button type="button">
+
+            <div class="form-group 6">
+                <input type="text" placeholder="Enter products id (search):"
+                    name="product_id_search" id="liveSearch" onkeyup="searchFunction()">
+            </div>
+            <!-- <input type="submit" name="search" value="Search"> -->
+            <!-- <button type="button">
                 <a href="{% url 'search'%}">Go to search </a>
-            </button>
-            <!-- <input type="submit" name="search" value="go to search"> -->
+            </button> -->
         </form>
-        <table>
+        <table id="myTable">
             <thead>
                 <tr>
                     <th>product id</th>
@@ -103,7 +108,37 @@
             {% endfor %}
 
         </table>
+        <p id="msg"></p>
     </center>
+    <script>
+        function searchFunction(){
+            let input , filter , table , td , tr , j;
+            input = document.getElementById("liveSearch");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            console.log(filter);
+            for(j=0 ; j < tr.length ; j++){
+                td = tr[j].getElementsByTagName("td");
+
+                if (td.length > 0){
+                    if (td[0].innerHTML.toLocaleUpperCase().indexOf(filter) > -1 || 
+                        td[1].innerHTML.toLocaleUpperCase().indexOf(filter) > -1 
+                    ){
+                        tr[j].style.display = ""
+                    }
+                    else {
+                        tr[j].style.display = "none"
+                    }
+                }
+                if (td.length == 0){
+                    msg.innerHTML = "not found";
+                }
+            }
+        }
+    </script>
+        
+
 </body>
 
 </html>
