@@ -256,7 +256,7 @@ def main():
         print("Invalid choice")
         main()
 
-main()  
+# main()  
 # search()  
 # showdb()  
 # insert()  
@@ -265,4 +265,9 @@ main()
 # delete()
 # showStatus()
 # borrow()
+from .models import Details
+def update_status():
+    dt = Details.objects.all()
+    print(dt)
 
+update_status()    
