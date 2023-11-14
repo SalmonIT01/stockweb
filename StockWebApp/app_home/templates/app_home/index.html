@@ -2,7 +2,71 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .open-button {
+            color: blue;
+            cursor: pointer;
+        }
+
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 125;
+            right: 30px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+        }
+
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .form-container input[type=text],
+        .form-container input[type=text] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        .form-container input[type=text]:focus,
+        .form-container input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        .form-container .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .form-container .cancel {
+            background-color: red;
+        }
+
+        .form-container .btn:hover,
+        .open-button:hover {
+            opacity: 1;
+        }
+
         table,
         th,
         td {
@@ -36,78 +100,148 @@
             </div>
 
             <div class="form-group 3">
-                <input autocomplete="off" type="text" placeholder="Enter unit name" name="unit_name" required>
+                <label for="cars">เลือกหน่วยนับ:</label>
+                <select name="cars" id="cars" placeholder="เลือก">
+                      <option value="volvo">รีม</option>
+                      <option value="saab">แท่ง</option>
+                      <option value="mercedes">ด้าม</option>
+                      <option value="audi">ห่อ</option>
+                    </optgroup>
+                  </select>
             </div>
 
             <div class="form-group 4">
-                <input autocomplete="off" type="number" placeholder="Enter amount" name="amount" required>
+                <input autocomplete="off" type="number" placeholder="Enter amount" name="amount" required> 
             </div>
 
             <div class="form-group 5">
                 <input autocomplete="off" type="number" placeholder="Enter status id" name="status_id" required>
             </div>
+            <input type="submit" name="insert" value="submit">
 
-            <input type="submit" name="insert" value="เพิ่มข้อมูล">
-            <button>
+            <div class="form-group 6">
+                <input type="text" placeholder="Enter products id (search):" name="product_id_search" id="liveSearch"
+                    onkeyup="searchFunction()">
+            </div>
+            <input type="submit" name="search" value="Search">
+            <button type="button">
                 <a href="{% url 'search'%}">ไปหน้าค้นหา</a>
             </button>
-            <button>
-                <a href="{% url 'borrow'%}">ไปหน้ายืมสินค้า</a>
-            </button>
-            <!-- <input type="submit" name="search" value="go to search"> -->
         </form>
-        <table>
+        <table id="myTable">
             <thead>
                 <tr>
-                    <th>Product ID</th>
-                    <th>Name</th>
-                    <th>Unit</th>
-                    <th>Amount</th>
-                    <th>Status</th>
+                    <th>product id</th>
+                    <th>product name</th>
+                    <th>unit name</th>
+                    <th>amount</th>
+                    <th>status id</th>
                     <th>Edit</th>
                     <th>Delete</th>
+                    <th>Borrow</th>
 
                 </tr>
             </thead>
 
             {% for instance in data %}
             <tr>
-                <td>
+                <td x=instance.product_id>
                     {{ instance.product_id}}
                 </td>
-
+     
                 <td style="text-align:left;">
                     {{ instance.product_name}}
-                </td>
-                <td>
-                    {{ instance.amount}}
                 </td>
                 <td>
                     {{ instance.unit.unit_name}}
                 </td>
                 <td>
+                    {{ instance.amount}}
+                </td>
+                <td>
                     {% if instance.status_id == 1 %}
-                        <font color="green">พร้อมใช้งาน</font>
+                    <font color="green">พร้อมใช้งาน</font>
                     {% else %}
-                        <font color="red">ไม่พร้อมใช้งาน</font>
+                    <font color="red">ไม่พร้อมใช้งาน</font>
                     {% endif %}
                 </td>
                 <td class="text_center">
                     <div class="btn_group">
-                        <a href=""> Edit </a>
+                        <a href="">
+                            <font color="black">แก้ไข</font>
+                        </a>
                     </div>
                 </td>
                 <td class="text_center">
                     <div class="btn_group">
-                        <a href="/delete/{{instance.product_id}}">Delete</a>
+                        <a href="/delete/{{instance.product_id}}" onclick="return confirm('Are you sure to delete?')">
+                            <font color="black">ลบข้อมูล</font>
+                        </a>
+                    </div>
+                </td>
+                <td class="text_center">
+                    <div class="open-button">
+                    <a href="{% url 'borrow'%}"><font color="blue"> ยืม </font></a>
                     </div>
                 </td>
             </tr>
-
             {% endfor %}
 
         </table>
+        <p id="msg"></p>
     </center>
+<!-- ตุตุง   pop up borrow
+<div class="form-popup" id="myForm">
+    <form action="/action_page.php" class="form-container">
+        <center>
+            <h1>ยืมสินค้า</h1>
+        </center>
+
+        <label for="product_id"><b>รหัสสินค้า</b></label>
+        <input type="text" placeholder={{instance.product_id}} name="product_id" required>
+
+        <label for="amount_borrow"><b>จำนวนที่จะยืม</b></label>
+        <input type="text" placeholder="กรอกจำนวนที่จะยืม" name="amount_borrow" required>
+
+        <button type="submit" class="btn">ตกลง</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">ปิด</button>
+    </form>
+</div> -->
+    <script>
+        function searchFunction() {
+            let input, filter, table, td, tr, j;
+            input = document.getElementById("liveSearch");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            console.log(filter);
+            for (j = 0; j < tr.length; j++) {
+                td = tr[j].getElementsByTagName("td");
+
+                if (td.length > 0) {
+                    if (td[0].innerHTML.toLocaleUpperCase().indexOf(filter) > -1 ||
+                        td[1].innerHTML.toLocaleUpperCase().indexOf(filter) > -1
+                    ) {
+                        tr[j].style.display = ""
+                    }
+                    else {
+                        tr[j].style.display = "none"
+                    }
+                }
+                if (td.length == 0) {
+                    msg.innerHTML = "not found";
+                }
+            }
+        }
+        // function openForm() {
+        //     document.getElementById("myForm").style.display = "block";
+        // }
+
+        // function closeForm() {
+        //     document.getElementById("myForm").style.display = "none";
+        // }
+    </script>
+
 </body>
 
 </html>
