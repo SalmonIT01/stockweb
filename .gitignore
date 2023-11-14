@@ -8,4 +8,4 @@ StockWebApp/stockdb.db
 *.pyc
 StockWebApp/stockdb.db
 *.pyc
-StockWebApp/stockdb.db
+*.db
