@@ -49,57 +49,8 @@
                 <input type="number" placeholder="Enter status id:"
                 value={{venue.status_id}} name="status_id">
             </div>
-            <input type="submit" name="update" value="go to update">
-
-
-        </form>
-            <table>
-                <thead>
-                    <tr>
-                        <th>product id</th>
-                        <th>product name</th>
-                        <th>unit name</th>
-                        <th>amount</th>
-                        <th>status id</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-
-                    </tr>
-                </thead>
-
-                {% for instance in data %}
-                <tr>
-                    <td>
-                        {{ instance.product_id}}
-                    </td>
-
-                    <td>
-                        {{ instance.product_name}}
-                    </td>
-                    <td>
-                        {{ instance.unit.unit_name}}
-                    </td>
-                    <td>
-                        {{ instance.amount}}
-                    </td>
-                    <td>
-                        {{ instance.status_id}}
-                    </td>
-                    <td class="text_center">
-                        <div class="btn_group">
-                            <a href="{% url 'update' instance.product_id%}"> Edit </a>
-                        </div>
-                    </td>
-                    <td class="text_center">
-                        <div class="btn_group">
-                            <a href="{% url 'delete' instance.product_id%}">Delete</a>
-                        </div>
-                    </td>
-                </tr>
-
-                {% endfor %}
-
-            </table>
+            <input type="submit" name="update" value="แก้ไขข้อมูล">
+            
     </center>
 </body>
 
