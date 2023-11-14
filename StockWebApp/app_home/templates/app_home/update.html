@@ -1,0 +1,106 @@
+{% load static %}
+
+<html>
+
+<head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <img src="{% static 'nulogo.png' %}" width="150" height="150">
+        <h1>update</h1>
+
+        </br>
+        <!-- <form action="" method="post">{% csrf_token %} -->
+            <!-- {{from.as_p}}
+            </br>
+            <input type="submit" value="go to update"> -->
+
+        <form action="#" method="post">{% csrf_token %}
+            <div class="form-group first">
+                <input type="text" placeholder="Enter product id:"
+                value= {{venue.product_id}} name="product_id">
+            </div>
+
+            <div class="form-group 2">
+                <input type="text" placeholder="Enter product name:"
+                    value={{venue.product_name}} name="product_name">
+            </div>
+
+            <div class="form-group 3">
+                <input type="text" placeholder="Enter unit name:"
+                value={{unit_title}} name="unit_name">
+            </div>
+
+            <div class="form-group 4">
+                <input type="number" placeholder="Enter amount:"
+                value={{venue.amount}} name="amount">
+            </div>
+
+            <div class="form-group 5">
+                <input type="number" placeholder="Enter status id:"
+                value={{venue.status_id}} name="status_id">
+            </div>
+            <input type="submit" name="update" value="go to update">
+
+
+        </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>product id</th>
+                        <th>product name</th>
+                        <th>unit name</th>
+                        <th>amount</th>
+                        <th>status id</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+
+                    </tr>
+                </thead>
+
+                {% for instance in data %}
+                <tr>
+                    <td>
+                        {{ instance.product_id}}
+                    </td>
+
+                    <td>
+                        {{ instance.product_name}}
+                    </td>
+                    <td>
+                        {{ instance.unit.unit_name}}
+                    </td>
+                    <td>
+                        {{ instance.amount}}
+                    </td>
+                    <td>
+                        {{ instance.status_id}}
+                    </td>
+                    <td class="text_center">
+                        <div class="btn_group">
+                            <a href="{% url 'update' instance.product_id%}"> Edit </a>
+                        </div>
+                    </td>
+                    <td class="text_center">
+                        <div class="btn_group">
+                            <a href="{% url 'delete' instance.product_id%}">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+    </center>
+</body>
+
+</html>
